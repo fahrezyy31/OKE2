@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Link Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      padding: 2rem;
+    }
+    .container {
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: auto;
+    }
+    input, button {
+      width: 100%;
+      padding: 1rem;
+      margin-top: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .result {
+      margin-top: 2rem;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Link Tracker Generator</h2>
+    <input type="text" id="originalUrl" placeholder="Masukin link yang mau dilacak" />
+    <button onclick="generateLink()">Generate Tracking Link</button>
+    <div class="result">
+      <p><strong>Tracking Link:</strong></p>
+      <p id="trackingUrl">Belum ada</p>
+    </div>
+  </div>
+
+  <script>
+    function generateLink() {
+      const originalUrl = document.getElementById('originalUrl').value;
+      if (!originalUrl) {
+        alert("Isi link dulu, bro!");
+        return;
+      }
+      const encodedUrl = encodeURIComponent(originalUrl);
+      const trackingUrl = `${window.location.origin}/redirect.html?target=${encodedUrl}`;
+      document.getElementById('trackingUrl').innerText = trackingUrl;
+    }
+  </script>
+</body>
+</html>
