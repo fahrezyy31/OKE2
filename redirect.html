@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Redirecting...</title>
+  <script>
+    function trackClick(targetUrl) {
+      const log = {
+        time: new Date().toISOString(),
+        target: targetUrl,
+        userAgent: navigator.userAgent
+      };
+      console.log("Klik dilacak:", log);
+      window.location.href = targetUrl;
+    }
+
+    window.onload = () => {
+      const params = new URLSearchParams(window.location.search);
+      const target = params.get("target");
+      if (target) {
+        trackClick(decodeURIComponent(target));
+      } else {
+        document.body.innerHTML = '<h2>Gagal redirect: link target nggak ditemukan.</h2>';
+      }
+    };
+  </script>
+</head>
+<body>
+  <h2>Lagi redirect, sabar bentar ya...</h2>
+</body>
+</html>
